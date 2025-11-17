@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2D Game Journey</title>
+
+    <!-- PrismJS Theme -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Marked.js for Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body class="dark">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <div class="close-btn" id="closeSidebar">✕</div>
+      <div class="sidebar-heading">
+        <img src="images/logo.jpeg" alt="Channel Logo" class="channel-logo" />
+        <span class="channel-name">Tech Sill Craft</span>
+      </div>
+      <input type="text" id="search" placeholder="Search stages..." />
+      <ul id="stageList"></ul>
+    </aside>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+      <!-- Header for Right Panel Only -->
+      <header class="right-header">
+        <h1 class="logo">📘 2D Game Journey</h1>
+        <div class="header-buttons">
+          <button id="themeToggle" class="theme-btn">🌙 Dark Mode</button>
+          <button id="hamburger" class="hamburger">☰</button>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main id="content">
+        <h2>Welcome to My Game Journey</h2>
+        <p>
+          This documentation covers my 2D Java game development journey.<br />
+          Each stage explains what I learned, fixed, and implemented in the
+          game. <br />Select a stage from the sidebar or use the navigation
+          buttons below.
+        </p>
+      </main>
+
+      <!-- Navigation Buttons -->
+      <div class="nav-buttons">
+        <button id="prevBtn">⬅ Previous</button>
+        <button id="nextBtn">Next ➡</button>
+      </div>
+
+      <!-- Footer -->
+      <footer>© 2025 — All Rights Reserved</footer>
+    </div>
+
+    <!-- PrismJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
+    <!-- Main Script -->
+    <script src="stages.js"></script>
+    <script src="script.js"></script>
+    <script src="surch.js"></script>
+  </body>
+</html>
