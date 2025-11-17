@@ -256,27 +256,70 @@ body.dark footer {
   border: none;
   cursor: pointer;
 }
+/* MOBILE FIXES */
 @media (max-width: 900px) {
-  .hamburger {
-    display: block;
-  }
-  main,
-  .nav-buttons {
-    margin-left: 0 !important;
-  }
+  /* Sidebar behavior */
   .sidebar {
     transform: translateX(-260px);
   }
   .sidebar.show {
     transform: translateX(0);
   }
+
+  /* Header fixes for perfect alignment */
+  .right-header {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 12px 15px;
+  }
+
+  /* Title fix – center alignment + no overlap */
+  .right-header .logo {
+    font-size: 18px;
+    text-align: center;
+    flex: 1;
+    margin-right: 10px;
+    white-space: nowrap;
+  }
+
+  /* Hamburger fix – keep it on right side properly */
+  .hamburger {
+    display: block;
+    font-size: 26px;
+    background: none;
+    border: none;
+    margin-left: auto;
+  }
+
+  /* Theme button & hamburger spacing fix */
+  .header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Fix main content */
+  main,
+  .nav-buttons {
+    margin-left: 0 !important;
+  }
+
+  /* Smaller header buttons on mobile */
+  .header-buttons button {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
   .close-btn {
     display: block;
   }
+
+  /* Remove left margin on right-panel */
   .right-panel {
     margin-left: 0;
   }
 }
+
 /* Make all stage images smaller and responsive */
 main img {
   max-width: 400px; /* Adjust as needed */

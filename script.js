@@ -3,10 +3,10 @@ const stageList = document.getElementById("stageList");
 const content = document.getElementById("content");
 const sidebar = document.getElementById("sidebar");
 
-const STAGES_PER_LOAD = 20; // Load 20 stages at a time
+const STAGES_PER_LOAD = 20;
 let loadedStages = 0;
 
-// Render stages dynamically in batches
+// Render stages list
 function renderStages(filter = "") {
   stageList.innerHTML = "";
   const filteredStages = stages.filter((stage) =>
@@ -31,7 +31,7 @@ function renderStages(filter = "") {
   }
 }
 
-// Load stage content from .md
+// Load single stage markdown
 function loadStage(stage) {
   currentStage = stage;
   content.innerHTML = "<p>Loading...</p>";
@@ -44,15 +44,13 @@ function loadStage(stage) {
     .then((md) => {
       md = md.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, src) => {
         if (src.startsWith("http") || src.startsWith("/")) return match;
-        let newSrc = `images/${src}`;
-        return `![${alt}](${newSrc})`;
+        return `![${alt}](images/${src})`;
       });
 
       content.innerHTML = marked.parse(md);
       Prism.highlightAll();
       addCopyButtons();
 
-      // Make all images consistent
       content.querySelectorAll("img").forEach((img) => {
         img.style.maxWidth = "500px";
         img.style.width = "100%";
@@ -64,13 +62,13 @@ function loadStage(stage) {
     });
 }
 
-// NEXT & PREVIOUS navigation
+// Navigation buttons
 document.getElementById("nextBtn").onclick = () => loadStage(currentStage + 1);
 document.getElementById("prevBtn").onclick = () => {
   if (currentStage > 1) loadStage(currentStage - 1);
 };
 
-// Copy buttons in code
+// Add copy buttons on code blocks
 function addCopyButtons() {
   document.querySelectorAll("pre").forEach((block) => {
     if (block.querySelector(".copy-btn")) return;
@@ -86,11 +84,27 @@ function addCopyButtons() {
   });
 }
 
-// Hamburger toggle
+// Sidebar toggle
 document.getElementById("hamburger").onclick = () =>
   sidebar.classList.add("show");
+
 document.getElementById("closeSidebar").onclick = () =>
   sidebar.classList.remove("show");
+
+// ⭐⭐ NEW: CLICK OUTSIDE TO CLOSE SIDEBAR ⭐⭐
+document.addEventListener("click", function (event) {
+  const hamburger = document.getElementById("hamburger");
+  const closeBtn = document.getElementById("closeSidebar");
+
+  if (
+    sidebar.classList.contains("show") &&
+    !sidebar.contains(event.target) &&
+    event.target !== hamburger &&
+    event.target !== closeBtn
+  ) {
+    sidebar.classList.remove("show");
+  }
+});
 
 // Theme toggle
 document.getElementById("themeToggle").onclick = () => {
@@ -100,5 +114,5 @@ document.getElementById("themeToggle").onclick = () => {
     document.body.classList.contains("dark") ? "☀ Light Mode" : "🌙 Dark Mode";
 };
 
-// Initial render
+// Initial stage load
 renderStages();
